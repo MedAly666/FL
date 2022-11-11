@@ -457,10 +457,10 @@ void play(){
     // the first move has to be the biggest double, which is just [PIPS-1|PIPS-1]. so we initialize the turn with who has it and play it right away.
     g->turn = g->hands[PIPS-1][PIPS-1];
     domove(g, (struct move){PIPS-1, PIPS-1, 0});
+    int n = 0;
+    move moves[PIPS * PIPS];
     do {
         print_game(g);
-        int n = 0;
-        move moves[PIPS * PIPS];
         get_moves(g, moves, &n);
         print_moves(moves, n);
         printf("%d moves\n", n);
@@ -470,10 +470,16 @@ void play(){
             domove(g, moves[0]);
         } else {
             move move;
-            scanf("%d %d %d", &move.left, &move.right, &move.head);
-            if(move.left == -1)
-                move = best_move(g, /*move.right*/20); // using move.right as depth when move.left is -1.
-            domove(g, move);
+            while(1){
+                scanf("%d %d %d", &move.left, &move.right, &move.head);
+                if(move.left == -1){
+                    move = best_move(g, /*move.right*/20); // using move.right as depth when move.left is -1.
+                    if(move.head == -1){
+                        continue;
+                }
+                domove(g, move);
+                break;
+            }
         }
     } while(!over(g));
     print_game(g);
