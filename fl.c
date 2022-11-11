@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #define PIPS 7
 #define MAX 15
-#define TBZ 2000
+#define TBZ 20000
 
 typedef struct block{
     int left, right;
