@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define PIPS 7
-#define MAX 15
-#define TBZ 20000
+#define PIPS 5
+#define MAX 11
+#define TBZ 2000
 
 typedef struct block{
     int left, right;
@@ -28,7 +28,6 @@ typedef struct move {
     int right;
     int head;
 } move;
-
 // tree structure for the game tree
 typedef struct node {
     move move;
